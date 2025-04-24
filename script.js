@@ -14,9 +14,31 @@ async function showPlates(brand) {
 
   for (const model in models) {
     const modelPlates = models[model];
-    const modelHeader = `<h3>${model}</h3>`;
-    const plateItems = modelPlates.map(p => `<li>${p}</li>`).join('');
-    plateList.innerHTML += modelHeader + `<ul>${plateItems}</ul>`;
+    
+    // Create the collapsible section
+    const modelSection = document.createElement('div');
+    modelSection.classList.add('model-section');
+
+    // Create the model header (clickable)
+    const modelHeader = document.createElement('h3');
+    modelHeader.textContent = model;
+    modelHeader.style.cursor = 'pointer';
+    
+    // Add the click event to toggle the model's plates
+    modelHeader.onclick = function() {
+      const platesList = modelSection.querySelector('.plates-list');
+      platesList.classList.toggle('hidden');
+    };
+
+    // Create the plate list
+    const platesList = document.createElement('ul');
+    platesList.classList.add('plates-list');
+    platesList.innerHTML = modelPlates.map(p => `<li>${p}</li>`).join('');
+    
+    modelSection.appendChild(modelHeader);
+    modelSection.appendChild(platesList);
+
+    plateList.appendChild(modelSection);
   }
 
   resultDiv.classList.remove('hidden');
