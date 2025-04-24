@@ -1,4 +1,18 @@
 {
+  "Toyota": {
+    "Supra": [
+      "SUPRA123",
+      "SUPRA456",
+      "SUPRA789"
+    ]
+  },
+  "BMW": {
+    "E30": [
+      "E30M3",
+      "E30BMW",
+      "E30TURBO"
+    ]
+  },
   "Honda": {
     "S2000": [
       "GT-1451",
