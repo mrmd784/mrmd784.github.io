@@ -32,6 +32,7 @@ async function showPlates(brand) {
       // Add the click event to toggle the model's plates
       modelHeader.onclick = function() {
         const platesList = modelSection.querySelector('.plates-list');
+        // Toggle visibility of the plates list
         platesList.classList.toggle('hidden');
       };
 
