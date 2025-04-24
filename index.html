@@ -2,21 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Open Car Plate Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Plate Viewer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Select a Car Brand</h1>
-  <div class="brand-grid">
-  <img src="images/toyota.svg" alt="Toyota" onclick="showPlates('Toyota')">
-  <img src="images/bmw.svg" alt="BMW" onclick="showPlates('BMW')">
-  <img src="images/honda.svg" alt="Honda" onclick="showPlates('Honda')">
-</div>
+  <div class="container">
+    <h2>Select a Car Brand to View Models</h2>
 
-<div id="result" class="hidden">
-  <h2 id="brand-title"></h2>
-  <div id="plate-list"></div>
-</div>
+    <!-- Brand Logos (these can be images you upload to the repo) -->
+    <div class="brand-grid">
+      <img src="images/toyota.svg" alt="Toyota" onclick="showPlates('Toyota')">
+      <img src="images/bmw.svg" alt="BMW" onclick="showPlates('BMW')">
+      <img src="images/honda.svg" alt="Honda" onclick="showPlates('Honda')">
+    </div>
+
+    <!-- Result Section to Display Plates -->
+    <div id="result" class="hidden">
+      <h2 id="brand-title"></h2>
+      <div id="plate-list"></div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
