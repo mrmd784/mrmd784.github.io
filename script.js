@@ -10,13 +10,13 @@ async function showPlates(brand) {
   const plateList = document.getElementById('plate-list');
 
   brandTitle.textContent = `${brand} Models`;
-  plateList.innerHTML = '';
+  plateList.innerHTML = '';  // Clear existing plates
 
-  // If the brand is a flat list (like Toyota, BMW), show plates directly
+  // If the brand data is an array (Toyota, BMW, etc.)
   if (Array.isArray(brandData)) {
     plateList.innerHTML = brandData.map(p => `<li>${p}</li>`).join('');
   } else {
-    // Otherwise, handle the case where brandData is an object with models (like Honda)
+    // Handle models as objects (Honda, etc.)
     for (const model in brandData) {
       const modelPlates = brandData[model];
 
@@ -30,23 +30,25 @@ async function showPlates(brand) {
       modelHeader.style.cursor = 'pointer';
 
       // Add the click event to toggle the model's plates
-      modelHeader.onclick = function() {
+      modelHeader.addEventListener('click', function() {
         const platesList = modelSection.querySelector('.plates-list');
-        // Toggle visibility of the plates list
         platesList.classList.toggle('hidden');
-      };
+      });
 
       // Create the plate list for the model
       const platesList = document.createElement('ul');
-      platesList.classList.add('plates-list');
+      platesList.classList.add('plates-list', 'hidden'); // Start as hidden
       platesList.innerHTML = modelPlates.map(p => `<li>${p}</li>`).join('');
-      
+
+      // Append the header and list to the section
       modelSection.appendChild(modelHeader);
       modelSection.appendChild(platesList);
 
+      // Append the model section to the plate list container
       plateList.appendChild(modelSection);
     }
   }
 
+  // Make the result section visible after loading the data
   resultDiv.classList.remove('hidden');
 }
