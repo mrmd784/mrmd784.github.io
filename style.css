@@ -28,3 +28,37 @@ body {
 .hidden {
   display: none;
 }
+
+/* Collapsible model sections */
+.model-section {
+  margin: 10px 0;
+}
+
+.model-section h3 {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  margin: 0;
+  font-size: 16px;
+}
+
+.model-section ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: none; /* Hidden by default */
+}
+
+.model-section ul li {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.model-section ul li:last-child {
+  border-bottom: none;
+}
+
+.model-section ul.hidden {
+  display: none;
+}
