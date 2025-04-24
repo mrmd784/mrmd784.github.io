@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Plate Viewer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Plate Viewer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Select a Car Brand to View Models</h2>
+    <div class="container">
+        <h2>Select a Car Brand to View Models</h2>
 
-    <!-- Brand Logos (these can be images you upload to the repo) -->
-    <div class="brand-grid">
-      <img src="images/toyota.svg" alt="Toyota" onclick="showPlates('Toyota')">
-      <img src="images/bmw.svg" alt="BMW" onclick="showPlates('BMW')">
-      <img src="images/honda.svg" alt="Honda" onclick="showPlates('Honda')">
+        <div class="brand-grid">
+            <img src="images/toyota.svg" alt="Toyota" onclick="showPlates('Toyota')">
+            <img src="images/bmw.svg" alt="BMW" onclick="showPlates('BMW')">
+            <img src="images/honda.svg" alt="Honda" onclick="showPlates('Honda')">
+        </div>
+
+        <div id="result" class="hidden">
+            <h2 id="brand-title"></h2>
+            <div id="plate-list"></div>
+        </div>
     </div>
 
-    <!-- Result Section to Display Plates -->
-    <div id="result" class="hidden">
-      <h2 id="brand-title"></h2>
-      <div id="plate-list"></div>
-    </div>
-  </div>
-
-  <script src="script.js?v=1.1"></script>
+    <script src="script.js?v=1.1"></script>
 </body>
 </html>
