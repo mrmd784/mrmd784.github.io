@@ -1,6 +1,4 @@
 {
-  "Toyota": ["ABC123", "DEF456", "TOY789"],
-  "BMW": ["M3FAST", "BMW999", "Z4TURBO"],
   "Honda": {
     "S2000": [
       "GT-1451",
