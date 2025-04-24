@@ -1,27 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Plate Viewer</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Car Data Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; }
+    h1 { color: #333; }
+    .brand, .model { margin-top: 10px; }
+    ul { list-style-type: disc; margin-left: 20px; }
+    details summary { cursor: pointer; font-weight: bold; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Select a Car Brand to View Models</h2>
+  <h1>Car Data Viewer</h1>
+  <div id="car-data"></div>
 
-        <div class="brand-grid">
-            <img src="images/toyota.svg" alt="Toyota" onclick="showPlates('Toyota')">
-            <img src="images/bmw.svg" alt="BMW" onclick="showPlates('BMW')">
-            <img src="images/honda.svg" alt="Honda" onclick="showPlates('Honda')">
-        </div>
+  <script>
+    const carData = {
+      "Toyota": {
+        "Supra": ["SUPRA123", "SUPRA456", "SUPRA789"]
+      },
+      "BMW": {
+        "E30": ["E30M3", "E30BMW", "E30TURBO"]
+      },
+      "Honda": {
+        "S2000": [
+          "GT-1451",
+          "JK-8778",
+          "KB-5867",
+          "CAR-4929 (Edition 100, no70 of 100)"
+        ]
+      }
+    };
 
-        <div id="result" class="hidden">
-            <h2 id="brand-title"></h2>
-            <div id="plate-list"></div>
-        </div>
-    </div>
+    const container = document.getElementById('car-data');
 
-    <script src="script.js?v=1.1"></script>
+    for (const brand in carData) {
+      const brandDetails = document.createElement('details');
+      const brandSummary = document.createElement('summary');
+      brandSummary.textContent = brand;
+      brandDetails.appendChild(brandSummary);
+
+      for (const model in carData[brand]) {
+        const modelDetails = document.createElement('details');
+        const modelSummary = document.createElement('summary');
+        modelSummary.textContent = model;
+        modelDetails.appendChild(modelSummary);
+
+        const list = document.createElement('ul');
+        carData[brand][model].forEach(code => {
+          const item = document.createElement('li');
+          item.textContent = code;
+          list.appendChild(item);
+        });
+
+        modelDetails.appendChild(list);
+        brandDetails.appendChild(modelDetails);
+      }
+
+      container.appendChild(brandDetails);
+    }
+  </script>
 </body>
 </html>
