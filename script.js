@@ -1,49 +1,48 @@
-let carData = {};
-
-fetch('data.json')
-  .then(response => {
-    if (!response.ok) throw new Error('Network response was not ok');
-    return response.json();
-  })
-  .then(data => {
-    carData = data;
-
-    // Enable clicks on brand icons
-    document.querySelectorAll('#brand-icons img').forEach(img => {
-      img.addEventListener('click', () => {
-        const brand = img.dataset.brand;
-        showBrandData(brand);
-      });
-    });
-  })
-  .catch(error => {
-    document.getElementById('car-data').textContent = 'Failed to load data.';
-    console.error('Error loading JSON:', error);
+// Redirect to models.html with selected brand
+document.querySelectorAll('#brand-icons img').forEach(img => {
+  img.addEventListener('click', () => {
+    const brand = img.dataset.brand;
+    window.location.href = `models.html?brand=${encodeURIComponent(brand)}`;
   });
+});
 
-function showBrandData(brand) {
-  const container = document.getElementById('car-data');
-  container.innerHTML = `<h2>${brand}</h2>`;
+// Load data.json
+async function fetchData() {
+  const response = await fetch('data.json');
+  return response.json();
+}
 
-  if (!carData[brand]) {
-    container.innerHTML += `<p>No data found for ${brand}.</p>`;
+// For models.html
+async function showModelsAndData() {
+  const params = new URLSearchParams(window.location.search);
+  const brand = params.get('brand');
+  if (!brand) return;
+
+  document.getElementById('brand-title').textContent = `Models for ${brand}`;
+  const data = await fetchData();
+  const models = data[brand];
+  const modelButtonsDiv = document.getElementById('model-buttons');
+  const modelDataDiv = document.getElementById('model-data');
+
+  if (!models) {
+    modelButtonsDiv.innerHTML = `<p>No models found for ${brand}.</p>`;
     return;
   }
 
-  for (const model in carData[brand]) {
-    const modelDetails = document.createElement('details');
-    const modelSummary = document.createElement('summary');
-    modelSummary.textContent = model;
-    modelDetails.appendChild(modelSummary);
-
-    const list = document.createElement('ul');
-    carData[brand][model].forEach(code => {
-      const item = document.createElement('li');
-      item.textContent = code;
-      list.appendChild(item);
+  Object.keys(models).forEach(model => {
+    const button = document.createElement('button');
+    button.textContent = model;
+    button.addEventListener('click', () => {
+      const values = models[model];
+      modelDataDiv.innerHTML = `
+        <h2>${model}</h2>
+        <ul>${values.map(v => `<li>${v}</li>`).join('')}</ul>
+      `;
     });
+    modelButtonsDiv.appendChild(button);
+  });
+}
 
-    modelDetails.appendChild(list);
-    container.appendChild(modelDetails);
-  }
+if (window.location.pathname.includes('models.html')) {
+  showModelsAndData();
 }
