@@ -1,39 +1,96 @@
+/* General page styles */
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #f7f7f7;
-  text-align: center;
+  margin: 20px;
+  background-color: #f9f9f9;
 }
 
 h1 {
-  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Brand icons on the home page */
+.brand-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
 .brand-container img {
   width: 100px;
-  margin: 10px;
+  height: auto;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.3s;
 }
 
 .brand-container img:hover {
   transform: scale(1.1);
 }
 
-#car-data {
-  margin-top: 30px;
-  text-align: left;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+/* Model buttons (tiles) */
+.model-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+  padding: 0 10px;
 }
 
-ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-details summary {
+.model-container button {
+  padding: 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.model-container button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* Model data display */
+.model-data {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.model-data h2 {
+  margin-bottom: 10px;
+}
+
+.model-data ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.model-data ul li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Back button */
+#back-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #777;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#back-button:hover {
+  background-color: #555;
+  transform: translateY(-2px);
 }

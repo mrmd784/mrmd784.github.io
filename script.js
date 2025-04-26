@@ -46,3 +46,11 @@ async function showModelsAndData() {
 if (window.location.pathname.includes('models.html')) {
   showModelsAndData();
 }
+
+// Handle Back Button
+const backButton = document.getElementById('back-button');
+if (backButton) {
+  backButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+}
