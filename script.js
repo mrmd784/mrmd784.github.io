@@ -41,16 +41,37 @@ async function showModelsAndData() {
     });
     modelButtonsDiv.appendChild(button);
   });
+
+  // Handle Back Button (only on models.html)
+  const backButton = document.getElementById('back-button');
+  if (backButton) {
+    backButton.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+  }
 }
 
+// Check if we are on models.html
 if (window.location.pathname.includes('models.html')) {
   showModelsAndData();
 }
 
-// Handle Back Button
-const backButton = document.getElementById('back-button');
-if (backButton) {
-  backButton.addEventListener('click', () => {
-    window.location.href = 'index.html';
+// =======================
+// Always run this on all pages
+// =======================
+
+// Theme Toggle Button
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.textContent = '☀️';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
   });
 }
